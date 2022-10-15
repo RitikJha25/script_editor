@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sample-editor</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .container{
+            width: 90vw;
+            margin: 5vw;
+            border: solid black 1px;
+        }
+        .buttons{
+            display: grid;
+            grid-template-columns: 7vw 7vw 7vw 7vw 9vw 7vw;
+            width: 90%;
+            margin: auto;
+        }
+        .buttons button{
+            margin: auto;
+            margin: 0.4em;
+        }
+        .editor-area{
+            width: 22cm;
+            margin: 0% 4% 4% 4%;
+            font-size: 12pt;
+            font-family: 'Courier New', Courier, monospace;
+            height: 70vh;
+            overflow-y: scroll;
+            border: solid black 1px;
+            padding: 1em;
+        }
+        .slug{
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left:2.52cm ;
+            width: 15.12cm;
+        }
+        .action{
+            margin-left:2.52cm ;
+            width: 15.12cm; 
+        }
+        .speaker{
+            margin-left:7.56cm;
+            text-transform: uppercase;
+        }
+        .dialog{
+            margin-left: 5.04cm;
+            width: 10.08cm;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="buttons">
+            <button class="btn btn-primary" id="slug">slug</button>
+            <button class="btn btn-success" id="action">action</button>
+            <button class="btn btn-info" id="dialog">dialougue</button>
+            <button class="btn btn-warning" id="speaker">speaker</button>
+            <button class="btn btn-danger" id="para">paranthitical</button>
+            <button class="btn btn-primary" id="trans">transition</button>
+        </div>
+        <div class="editor-area" id="editor-area" contenteditable='true'>
+
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript">  
+    $(document).ready(function () {  
+    $(".editor-area").bind("keypress", function (e) {  
+    if (e.keyCode == 13) {  
+    return false;  
+    }  
+    });  
+    if($('.editor-area').html("")){
+        $('#slug').removeAttr('disabled');
+        $('#action').attr('disabled','disabled');
+        $('#speaker').attr('disabled','disabled');
+        $('#para').attr('disabled','disabled');
+        $('#trans').attr('disabled','disabled');
+        $('#dialog').attr('disabled','disabled');
+    }
+    });  
+    $('#slug').click(function(){
+        $(this).addClass('red');
+        $('#slug').attr('disabled','disabled');
+        $('#action').removeAttr('disabled');
+        $('#speaker').removeAttr('disabled');
+        $('#trans').attr('disabled','disabled');
+        $('#dialog').attr('disabled','disabled');
+        $('#para').attr('disabled','disabled');
+        document.getElementById('editor-area').innerHTML += "<p class='slug' contenteditable='true'>int./ext</p>"
+        
+    });
+    $('#action').click(function(){
+        $(this).addClass('red');
+        $('#action').removeAttr('disabled');
+        $('#slug').removeAttr('disabled');
+        $('#trans').attr('disabled','disabled');
+        $('#dialog').attr('disabled','disabled');
+        $('#para').attr('disabled','disabled');
+        document.getElementById('editor-area').innerHTML += "<p class='action' contenteditable='true'>action</p>"
+        //$('.editor-area').html("<div class='action' contenteditable='true'></div>")
+    });
+    $('#speaker').click(function(){
+        $(this).addClass('red');
+        $('#speaker').attr('disabled','disabled');
+        $('#dialog').removeAttr('disabled');
+        $('#para').removeAttr('disabled');
+        $('#slug').attr('disabled','disabled');
+        $('#action').attr('disabled','disabled');
+        document.getElementById('editor-area').innerHTML += "<p class='speaker' contenteditable='true'>speaker</p>"
+        //$('.editor-area').html("<div class='speaker' contenteditable='true'></div>")
+    });
+    $('#dialog').click(function(){
+        $(this).addClass('red');
+        $('#slug').removeAttr('disabled');
+        $('#speaker').removeAttr('disabled');
+        $('#dialog').attr('disabled','disabled');
+        $('#action').attr('disabled','disabled');
+        $('#para').attr('disabled','disabled');
+        document.getElementById('editor-area').innerHTML += "<div class='dialog' contenteditable='true'>dialog</div>"
+        //$('.editor-area').html("<div class='dialog' contenteditable='true'></div>")
+    });
+    
+
+
+    </script>  
+</html>
